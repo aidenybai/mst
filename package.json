@@ -1,0 +1,31 @@
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "eslint src/**",
+    "lint:fix": "eslint src/** --fix",
+    "cleanup": "prettier --write src --parser typescript",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
+    "autoprefixer": "^10.2.5",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^6.0.0",
+    "postcss": "^8.2.15",
+    "prettier": "^2.3.0",
+    "rollup": "^2.49.0",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "tailwindcss": "^2.1.2",
+    "typescript": "^4.2.4",
+    "vite": "^2.3.2",
+    "vite-plugin-compress": "^2.1.0",
+    "vite-plugin-html": "^2.0.7"
+  },
+  "dependencies": {
+    "lucia": "^0.6.3"
+  }
+}
