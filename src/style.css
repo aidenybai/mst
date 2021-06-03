@@ -23,6 +23,15 @@ summary {
   color: #fff !important;
 }
 
+button {
+  background-color: #4772FF;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #4772FFab;
+}
+
 :root {
   --background-body: #fff;
   --background: #f6f7ff;

@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "lucia": "^0.6.3",
-    "public-google-sheets-parser": "^1.2.4"
+    "public-google-sheets-parser": "^1.2.4",
+    "water.css": "^2.0.0"
   }
 }

@@ -1,3 +1,4 @@
+import 'water.css/out/water.css';
 import './style.css';
 
 import { component } from 'lucia';
@@ -21,7 +22,8 @@ const createCard = (
   keywords: string,
   paper: string,
   poster: string,
-  video: string
+  video: string,
+  index: number
 ): string => `
   <summary><b>${title}</b></summary>
   <p>
@@ -39,20 +41,62 @@ const createCard = (
   <p>
     <b>Abstract:</b><br>${abstract}
   </p>
+  <p :style="{ display: !!(new URLSearchParams(window.location.search).get('project')) ? 'none' : 'block' }">
+    <b>Share Link:</b>
+    <input value="${window.location.origin}/?project=${index}" style="width: 50%" />
+    <a href="${window.location.origin}/?project=${index}">ℹ️ Open as page</a>
+  </p>
 `;
 
 fetch('https://literallyjustanabel.aidenbai.repl.co/mst')
   .then((res) => res.json())
   .then((rows: Card[]) => {
     const c = component({ catalog: [], query: '' });
+    const urlParams = new URLSearchParams(window.location.search);
+    const project = urlParams.get('project');
 
-    rows.forEach(({ year, title, authors, abstract, keywords, paper, poster, video }: Card) => {
+    if (project) {
+      const { year, title, authors, abstract, keywords, paper, poster, video }: Card =
+        rows[Number(project)];
       const fullYear = String(new Date(eval(year)).getFullYear());
       // @ts-expect-error it exists
       c.state.catalog.push(
-        createCard(fullYear, title, authors, abstract, keywords, paper, poster, video)
+        createCard(
+          fullYear,
+          title,
+          authors,
+          abstract,
+          keywords,
+          paper,
+          poster,
+          video,
+          Number(project)
+        )
       );
-    });
+    } else {
+      rows.forEach(
+        ({ year, title, authors, abstract, keywords, paper, poster, video }: Card, i: number) => {
+          const fullYear = String(new Date(eval(year)).getFullYear());
+          // @ts-expect-error it exists
+          c.state.catalog.push(
+            createCard(fullYear, title, authors, abstract, keywords, paper, poster, video, i)
+          );
+        }
+      );
+    }
 
-    c.mount('#app');
+    const el = document.querySelector('#app');
+    c.mount(el as HTMLElement);
+    if (project) {
+      ((el?.childNodes[1] as HTMLElement).firstElementChild as HTMLElement).setAttribute(
+        'open',
+        ''
+      );
+      const button = document.createElement('button');
+      button.textContent = '🔙 Go Back Home';
+      button.onclick = () => {
+        window.location.replace(window.location.origin);
+      };
+      (el?.childNodes[0] as HTMLElement).replaceWith(button);
+    }
   });
