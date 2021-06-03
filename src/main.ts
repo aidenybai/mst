@@ -60,25 +60,14 @@ fetch('https://literallyjustanabel.aidenbai.repl.co/mst')
         rows[Number(project)];
       // @ts-expect-error it exists
       c.state.catalog.push(
-        createCard(
-          year,
-          title,
-          authors,
-          abstract,
-          keywords,
-          paper,
-          poster,
-          video,
-          Number(project)
-        )
+        createCard(year, title, authors, abstract, keywords, paper, poster, video, Number(project))
       );
     } else {
       rows.forEach(
         ({ year, title, authors, abstract, keywords, paper, poster, video }: Card, i: number) => {
-          const fullYear = String(new Date(eval(year)).getFullYear());
           // @ts-expect-error it exists
           c.state.catalog.push(
-            createCard(fullYear, title, authors, abstract, keywords, paper, poster, video, i)
+            createCard(year, title, authors, abstract, keywords, paper, poster, video, i)
           );
         }
       );
