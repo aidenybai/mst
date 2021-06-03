@@ -14,6 +14,7 @@ interface Card {
 }
 
 const parser = new PublicGoogleSheetsParser('1stDtVun1C2aDm7CgxLeKzIj7sbkH2-3aq1TGD4hqK6w');
+console.log(PublicGoogleSheetsParser);
 const createCard = (
   year: string,
   title: string,
@@ -42,10 +43,11 @@ const createCard = (
 `;
 
 parser.parse().then((rows: Card[]) => {
+  // @ts-expect-error it exists
   window.catalog = [];
   rows.forEach(({ year, title, authors, abstract, keywords, paper, poster }: Card) => {
     const fullYear = String(new Date(eval(year)).getFullYear());
-
+    // @ts-expect-error it exists
     window.catalog.push(createCard(fullYear, title, authors, abstract, keywords, paper, poster));
   });
 
