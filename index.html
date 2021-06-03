@@ -7,26 +7,47 @@
       type="image/png"
       href="https://i0.wp.com/chsmstmagnet.com/wp-content/uploads/2017/09/cropped-magnetlogoofficialrevised.png?fit=512%2C512&ssl=1"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MST Magnet Research Catalog</title>
   </head>
   <body>
     <h1><b>MST Magnet Research Catalog</b></h1>
 
-    <p>Listed below is a catalog of completed research projects completed by MST Magnet students.</p>
-
+    <p>
+      Listed below is a catalog of completed research projects completed by MST Magnet students from
+      past years.
+    </p>
 
     <div id="app">
       <input l-model="query" type="text" placeholder="Search..." />
 
-      <div l-for="entry in catalog.filter((entry) => entry.toLowerCase().includes(query.toLowerCase())).reverse()">
-        <details :style="{ display: this.entry ? 'block' : 'none' }" l-html="this.entry" style="display: none"></details>
+      <div
+        l-for="entry in catalog.filter((entry) => entry.toLowerCase().includes(query.toLowerCase())).reverse()"
+      >
+        <details
+          :style="{ display: this.entry ? 'block' : 'none' }"
+          l-html="this.entry"
+          style="display: none"
+        ></details>
         <p :style="{ display: catalog.length > 0 ? 'none' : 'block' }">Loading...</p>
       </div>
     </div>
 
-    <small>Find an issue with the website or need to make an adjustment to your project? <a href="mailto:hello@aidenybai.com"></a>Contact Aiden Bai</small>
+    <p>
+      <hr>
+
+      <small>
+        Find an issue with the website?
+        <a href="mailto:hello@aidenybai.com"> Contact Aiden Bai</a>
+      </small>
+
+      <br />
+      <small>
+        Is your project not here?
+        <a href="https://forms.gle/SW3qHgzR3ZBBKE3A6">📝 Submit it</a>
+      </small>
+    </p>
 
     <script src="./src/main.ts" type="module"></script>
   </body>
