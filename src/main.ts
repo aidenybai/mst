@@ -8,6 +8,7 @@ interface Card {
   keywords: string;
   paper: string;
   poster: string;
+  video: string;
 }
 
 const createCard = (
@@ -17,7 +18,8 @@ const createCard = (
   abstract: string,
   keywords: string,
   paper: string,
-  poster: string
+  poster: string,
+  video: string
 ): string => `
   <summary>${title}</summary>
   <p>
@@ -30,7 +32,7 @@ const createCard = (
     <b>Keywords:</b> ${keywords}
   </p>
   <p>
-    <b>Links:</b> <a href="${paper}">Paper</a> | <a href="${poster}">Poster</a>
+    <b>Links:</b> <a href="${paper}">Paper</a> | <a href="${poster}">Poster</a> | <a href="${video}">Video</a>
   </p>
   <p>
     <b>Abstract:</b><br>${abstract}
@@ -42,10 +44,10 @@ fetch('https://literallyjustanabel.aidenbai.repl.co/mst')
   .then((rows: Card[]) => {
     const c = component({ catalog: [], query: '' });
 
-    rows.forEach(({ year, title, authors, abstract, keywords, paper, poster }: Card) => {
+    rows.forEach(({ year, title, authors, abstract, keywords, paper, poster, video }: Card) => {
       const fullYear = String(new Date(eval(year)).getFullYear());
       // @ts-expect-error it exists
-      c.state.catalog.push(createCard(fullYear, title, authors, abstract, keywords, paper, poster));
+      c.state.catalog.push(createCard(fullYear, title, authors, abstract, keywords, paper, poster, video));
     });
 
     c.mount('#app');
