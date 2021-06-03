@@ -12,6 +12,7 @@ interface Card {
   paper: string;
   poster: string;
   video: string;
+  notes: string;
 }
 
 const createCard = (
@@ -23,6 +24,7 @@ const createCard = (
   paper: string,
   poster: string,
   video: string,
+  notes: string,
   index: number
 ): string => `
   <summary><b>${title}</b></summary>
@@ -41,6 +43,9 @@ const createCard = (
   <p>
     <b>Abstract:</b><br>${abstract}
   </p>
+  <p>
+    <b>Author Notes:</b><br>${notes || 'N/A'}
+  </p>
   <p :style="{ display: !!(new URLSearchParams(window.location.search).get('project')) ? 'none' : 'block' }">
     <b>Share Link:</b>
     <input value="${window.location.origin}/?project=${index}" style="width: 50%" />
@@ -56,18 +61,32 @@ fetch('https://literallyjustanabel.aidenbai.repl.co/mst')
     const project = urlParams.get('project');
 
     if (project) {
-      const { year, title, authors, abstract, keywords, paper, poster, video }: Card =
+      const { year, title, authors, abstract, keywords, paper, poster, video, notes }: Card =
         rows[Number(project)];
       // @ts-expect-error it exists
       c.state.catalog.push(
-        createCard(year, title, authors, abstract, keywords, paper, poster, video, Number(project))
+        createCard(
+          year,
+          title,
+          authors,
+          abstract,
+          keywords,
+          paper,
+          poster,
+          video,
+          notes,
+          Number(project)
+        )
       );
     } else {
       rows.forEach(
-        ({ year, title, authors, abstract, keywords, paper, poster, video }: Card, i: number) => {
+        (
+          { year, title, authors, abstract, keywords, paper, poster, video, notes }: Card,
+          i: number
+        ) => {
           // @ts-expect-error it exists
           c.state.catalog.push(
-            createCard(year, title, authors, abstract, keywords, paper, poster, video, i)
+            createCard(year, title, authors, abstract, keywords, paper, poster, video, notes, i)
           );
         }
       );
