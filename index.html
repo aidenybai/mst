@@ -25,10 +25,11 @@
       >
         <details
           :style="{ display: this.entry ? 'block' : 'none' }"
+          class="fade-in"
           l-html="this.entry"
           style="display: none"
         ></details>
-        <p :style="{ display: catalog.length > 0 ? 'none' : 'block' }">Loading...</p>
+        <p :style="{ display: catalog.length > 0 ? 'none' : 'block' }">⌛ Loading...</p>
       </div>
     </div>
 

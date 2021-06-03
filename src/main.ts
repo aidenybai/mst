@@ -99,11 +99,9 @@ fetch('https://literallyjustanabel.aidenbai.repl.co/mst')
         'open',
         ''
       );
-      const button = document.createElement('button');
-      button.textContent = '🔙 Go Back Home';
-      button.onclick = () => {
-        window.location.replace(window.location.origin);
-      };
-      (el?.childNodes[0] as HTMLElement).replaceWith(button);
+      const a = document.createElement('a');
+      a.textContent = '🔙 View all projects';
+      a.href = '/';
+      (el?.childNodes[0] as HTMLElement).replaceWith(a);
     }
   });

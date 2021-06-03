@@ -32,6 +32,29 @@ button:hover {
   background-color: #4772FFab;
 }
 
+.fade-in {
+  animation: fadeIn 0.75s;
+}
+
+.spin {
+  animation: spin 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@keyframes spin {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
+}
+
 :root {
   --background-body: #fff;
   --background: #f6f7ff;
