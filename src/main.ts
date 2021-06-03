@@ -13,6 +13,7 @@ interface Card {
   poster: string;
   video: string;
   notes: string;
+  approved: string;
 }
 
 const createCard = (
@@ -25,8 +26,11 @@ const createCard = (
   poster: string,
   video: string,
   notes: string,
+  approved: string,
   index: number
-): string => `
+): string => {
+  return approved === 'yes'
+    ? `
   <summary><b>${title}</b></summary>
   <p>
     <b>Year:</b> ${year}
@@ -51,7 +55,10 @@ const createCard = (
     <input value="${window.location.origin}/?project=${index}" style="width: 100%" readonly />
     <a href="${window.location.origin}/?project=${index}">ℹ️ Open as page</a>
   </p>
-`;
+`
+    : `<summary style="background: #F6F7FF !important; color: rgba(0, 0, 0, 0.355) !important"><b>Unapproved Project</b></summary><p>This entry is currently pending approval and will be revealed once deemed appropriate.</p>`;
+};
+
 
 fetch('https://literallyjustanabel.aidenbai.repl.co/mst')
   .then((res) => res.json())
@@ -61,8 +68,19 @@ fetch('https://literallyjustanabel.aidenbai.repl.co/mst')
     const project = urlParams.get('project');
 
     if (project) {
-      const { year, title, authors, abstract, keywords, paper, poster, video, notes }: Card =
-        rows[Number(project)];
+      const {
+        year,
+        title,
+        authors,
+        abstract,
+        keywords,
+        paper,
+        poster,
+        video,
+        notes,
+        approved,
+      }: Card = rows[Number(project)];
+      if (approved !== 'yes') return;
       // @ts-expect-error it exists
       c.state.catalog.push(
         createCard(
@@ -75,18 +93,31 @@ fetch('https://literallyjustanabel.aidenbai.repl.co/mst')
           poster,
           video,
           notes,
+          approved,
           Number(project)
         )
       );
     } else {
       rows.forEach(
         (
-          { year, title, authors, abstract, keywords, paper, poster, video, notes }: Card,
+          { year, title, authors, abstract, keywords, paper, poster, video, notes, approved }: Card,
           i: number
         ) => {
           // @ts-expect-error it exists
           c.state.catalog.push(
-            createCard(year, title, authors, abstract, keywords, paper, poster, video, notes, i)
+            createCard(
+              year,
+              title,
+              authors,
+              abstract,
+              keywords,
+              paper,
+              poster,
+              video,
+              notes,
+              approved,
+              i
+            )
           );
         }
       );
