@@ -21,7 +21,7 @@
     <div id="app">
       <input l-model="query" type="text" placeholder="Search..." />
 
-      <div l-for="entry in catalog.filter((entry) => entry.toLowerCase().includes(query.toLowerCase()))">
+      <div l-for="entry in catalog.filter((entry) => entry.toLowerCase().includes(query.toLowerCase())).reverse()">
         <details l-html="this.entry"></details>
       </div>
     </div>
