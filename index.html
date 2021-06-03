@@ -7,14 +7,22 @@
       type="image/svg+xml"
       href="https://raw.githubusercontent.com/aidenybai/lucia/master/.github/img/icon.svg"
     />
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+    <title>MST Magnet Research Catalog</title>
   </head>
   <body>
-    <div id="app">
-      <button l-text="number" @click="number++"></button>
+    <h1>MST Magnet Research Catalog</h1>
+
+    <p>Listed below is a catalog of completed research projects completed by MST Magnet students.</p>
+
+    <div l-state="{ catalog: window.catalog ?? [] }">
+      <div l-for="entry in catalog">
+        <details l-html="this.entry"></details>
+      </div>
     </div>
 
-    <script type="module" src="./src/main.ts"></script>
+    <script src="./src/main.ts" type="module"></script>
   </body>
 </html>
