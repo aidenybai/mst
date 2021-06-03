@@ -1,6 +1,5 @@
 import './style.css';
 import { init } from 'lucia';
-// @ts-expect-error No types
 import PublicGoogleSheetsParser from 'public-google-sheets-parser';
 
 interface Card {
@@ -48,15 +47,7 @@ parser.parse().then((rows: Card[]) => {
     const fullYear = String(new Date(eval(year)).getFullYear());
 
     // @ts-expect-error window.catalog exists
-    window.catalog.push(createCard(
-      fullYear,
-      title,
-      authors,
-      abstract,
-      keywords,
-      paper,
-      poster
-    ));
+    window.catalog.push(createCard(fullYear, title, authors, abstract, keywords, paper, poster));
   });
 
   init();
