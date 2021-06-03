@@ -1,4 +1,5 @@
-import './style.css';
+/* @vite-nocheck */
+
 import { init } from 'lucia';
 import PublicGoogleSheetsParser from 'public-google-sheets-parser';
 
@@ -41,12 +42,10 @@ const createCard = (
 `;
 
 parser.parse().then((rows: Card[]) => {
-  // @ts-expect-error window.catalog exists
   window.catalog = [];
   rows.forEach(({ year, title, authors, abstract, keywords, paper, poster }: Card) => {
     const fullYear = String(new Date(eval(year)).getFullYear());
 
-    // @ts-expect-error window.catalog exists
     window.catalog.push(createCard(fullYear, title, authors, abstract, keywords, paper, poster));
   });
 
