@@ -48,7 +48,7 @@ const createCard = (
   </p>
   <p :style="{ display: !!(new URLSearchParams(window.location.search).get('project')) ? 'none' : 'block' }">
     <b>Share Link:</b>
-    <input value="${window.location.origin}/?project=${index}" style="width: 100%" />
+    <input value="${window.location.origin}/?project=${index}" style="width: 100%" readonly />
     <a href="${window.location.origin}/?project=${index}">ℹ️ Open as page</a>
   </p>
 `;
