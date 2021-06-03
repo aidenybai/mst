@@ -32,7 +32,7 @@ const createCard = (
     <b>Keywords:</b> ${keywords}
   </p>
   <p>
-    <b>Links:</b> <a href="${paper}">Paper</a> | <a href="${poster}">Poster</a> | <a href="${video}">Video</a>
+    <b>Links:</b> <a href="${paper}" target="_blank">Paper</a> | <a target="_blank" href="${poster}">Poster</a> | <a href="${video}" target="_blank">Video</a>
   </p>
   <p>
     <b>Abstract:</b><br>${abstract}
@@ -47,7 +47,9 @@ fetch('https://literallyjustanabel.aidenbai.repl.co/mst')
     rows.forEach(({ year, title, authors, abstract, keywords, paper, poster, video }: Card) => {
       const fullYear = String(new Date(eval(year)).getFullYear());
       // @ts-expect-error it exists
-      c.state.catalog.push(createCard(fullYear, title, authors, abstract, keywords, paper, poster, video));
+      c.state.catalog.push(
+        createCard(fullYear, title, authors, abstract, keywords, paper, poster, video)
+      );
     });
 
     c.mount('#app');
