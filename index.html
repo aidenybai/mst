@@ -18,7 +18,7 @@
     <p>Listed below is a catalog of completed research projects completed by MST Magnet students.</p>
 
 
-    <div l-state="{ catalog: window.catalog ?? [], query: '' }">
+    <div id="app">
       <input l-model="query" type="text" placeholder="Search..." />
 
       <div l-for="entry in catalog.filter((entry) => entry.toLowerCase().includes(query.toLowerCase()))">
