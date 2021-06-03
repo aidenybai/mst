@@ -58,11 +58,10 @@ fetch('https://literallyjustanabel.aidenbai.repl.co/mst')
     if (project) {
       const { year, title, authors, abstract, keywords, paper, poster, video }: Card =
         rows[Number(project)];
-      const fullYear = String(new Date(eval(year)).getFullYear());
       // @ts-expect-error it exists
       c.state.catalog.push(
         createCard(
-          fullYear,
+          year,
           title,
           authors,
           abstract,
