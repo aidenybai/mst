@@ -7,13 +7,12 @@
       type="image/png"
       href="https://i0.wp.com/chsmstmagnet.com/wp-content/uploads/2017/09/cropped-magnetlogoofficialrevised.png?fit=512%2C512&ssl=1"
     />
-    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MST Magnet Research Catalog</title>
   </head>
   <body>
-    <h1>MST Magnet Research Catalog</h1>
+    <h1><b>MST Magnet Research Catalog</b></h1>
 
     <p>Listed below is a catalog of completed research projects completed by MST Magnet students.</p>
 
@@ -22,7 +21,8 @@
       <input l-model="query" type="text" placeholder="Search..." />
 
       <div l-for="entry in catalog.filter((entry) => entry.toLowerCase().includes(query.toLowerCase())).reverse()">
-        <details l-html="this.entry"></details>
+        <details :style="{ display: this.entry ? 'block' : 'none' }" l-html="this.entry" style="display: none"></details>
+        <p :style="{ display: catalog.length > 0 ? 'none' : 'block' }">Loading...</p>
       </div>
     </div>
 

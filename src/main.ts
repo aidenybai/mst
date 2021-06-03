@@ -1,3 +1,5 @@
+import './style.css'
+
 import { component } from 'lucia';
 
 interface Card {
@@ -21,7 +23,7 @@ const createCard = (
   poster: string,
   video: string
 ): string => `
-  <summary>${title}</summary>
+  <summary><b>${title}</b></summary>
   <p>
     <b>Year:</b> ${year}
   </p>

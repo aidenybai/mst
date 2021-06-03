@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+  font-family: Nunito !important;
+}
+
+b {
+  /* color: #4772FF; */
+  font-weight: bold;
+  text-decoration: none;
+}
+
+summary:hover {
+  text-decoration: none !important;
+}
+
+summary:focus {
+  text-decoration: none !important;
+}
+
+summary {
+  background: #4772FF !important;
+  color: #fff !important;
+}
+
+:root {
+  --background-body: #fff;
+  --background: #f6f7ff;
+  --background-alt: #f6f7ff;
+  --selection: #4772FF;
+  --text-main: #363636;
+  --text-bright: #000;
+  --text-muted: #70777f;
+  --links: #4772FF;
+  --focus: #4772FFab;
+  --border: #dbdbdb;
+  --code: #000;
+  --animation-duration: 0.1s;
+  --button-hover: #ddd;
+  --scrollbar-thumb: color-mod(var(--button-hover) lightness(-3%));
+  --scrollbar-thumb-hover: color-mod(var(--button-hover) lightness(-10%));
+  --form-placeholder: #949494;
+  --form-text: #000;
+  --variable: #39a33c;
+  --highlight: #ff0;
+  --select-arrow: svg-load('./assets/select-arrow.svg', fill: #161f27);
+}
