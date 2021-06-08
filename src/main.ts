@@ -29,6 +29,7 @@ const createCard = (
   approved: string,
   index: number
 ): string => {
+  if (approved === 'no') return '';
   return approved === 'yes'
     ? `
   <summary><b>${title}</b></summary>
@@ -58,7 +59,6 @@ const createCard = (
 `
     : `<summary style="background: #F6F7FF !important; color: rgba(0, 0, 0, 0.355) !important"><b>Unapproved Project</b></summary><p>This entry is currently pending approval and will be revealed once deemed appropriate.</p>`;
 };
-
 
 fetch('https://literallyjustanabel.aidenbai.repl.co/mst')
   .then((res) => res.json())
